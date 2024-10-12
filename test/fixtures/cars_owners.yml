@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profileId: 1
+  carId: 1
+
+two:
+  profileId: 1
+  carId: 1
