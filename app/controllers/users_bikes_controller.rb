@@ -71,9 +71,9 @@ class UsersBikesController < ApplicationController
     # Orders the UsersBike records by id in the specified order: 5, 4, and 1
     in_order_of = UsersBike.in_order_of(:id, [ 5, 4, 1 ])
 
-    includes = UsersBike.select([ :id, :user_id, :bike_id ])
+    includes = UsersBike.preload([ :user ]).all
 
-    render json: includes, include: [ :user, :bike ] # ??
+    render json: includes # , include: [ :user, :bike ] # ??
   end
 
   private

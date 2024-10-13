@@ -10,12 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_11_221508) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_13_120653) do
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body_text"
+    t.integer "author_id"
+    t.index ["author_id"], name: "index_articles_on_author_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "city_id"
+    t.index ["city_id"], name: "index_authors_on_city_id"
+  end
+
   create_table "bikes", force: :cascade do |t|
     t.string "bike_model"
     t.integer "bike_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body_text"
+    t.integer "like_count"
+    t.integer "article_id"
+    t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
   create_table "users", force: :cascade do |t|

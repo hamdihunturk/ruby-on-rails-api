@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :adds
   resources :users_bikes
   resources :bikes
   resources :users
