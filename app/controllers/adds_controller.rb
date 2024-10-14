@@ -3,9 +3,46 @@ class AddsController < ApplicationController
 
   # GET /adds
   def index
-    authors = Author.includes([ :city ]).all
+    authors = Author.select(:name, :age, :city_id)
 
-    render json: authors
+    ########################
+    # authors = Author.all
+    # render json: {
+    #   succes: 1,
+    #   data: authors.as_json(
+    #     include: {
+    #         city: {
+    #           except: [ :id ]
+    #         }
+    #       }, except: [ :id ]
+    #   ),
+    #   message: "" }
+    ########################
+
+    ########################
+    # authors = Author.select(:name, :age, :city_id)
+    # render json: {
+    # succes: 1,
+    # data: authors.as_json(
+    #   include: {
+    #     city: {
+    #       only: [ :name ]  # Sadece name alanını dahil etmek
+    #     }
+    #   }
+    # ),
+    # message: ""
+    # }
+    ########################
+
+
+    comment = Comment.includes(:article)
+    render json: {
+      succes: 1,
+      data: comment.as_json(
+        include: { article: { include: { author: { include: :city } } } }
+      ),
+      message: ""
+    }
   end
 
   # GET /adds/1
