@@ -1,17 +1,17 @@
 class CreateAdds < ActiveRecord::Migration[7.2]
   def change
     create_table :cities do |t|
-      t.string     :name
+      t.text     :name
     end
 
     create_table :authors do |t|
-      t.string     :name
+      t.text     :name
       t.integer    :age
       t.belongs_to :city
     end
 
     create_table :articles do |t|
-      t.string     :title
+      t.text     :title
       t.text       :body_text
       t.belongs_to :author
     end
